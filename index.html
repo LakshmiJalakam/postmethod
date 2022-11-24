@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		body{
+			background-image: url(https://png.pngtree.com/background/20210716/original/pngtree-blue-pink-gradient-star-dream-princess-background-picture-image_1382500.jpg);
+			background-repeat: no-repeat;
+			background-size:100% ;
+		}
+	</style>
+</head>
+<body>
+	<input id="username" type="text" placeholder="enter your name"/>	
+	<input id="password" placeholder="enter your password"/>
+	<button onclick="store()">Submit</button>
+	<script type="text/javascript">
+		function store(){
+			var username=document.getElementById("username").value
+			console.log(username)
+			var password=document.getElementById("password").value
+			console.log(password)
+		fetch("http:localhost:2000/newData",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			body:JSON.stringify({name:username,pass:password})
+		})
+		.then((res)=>{
+			console.log(res)
+			if(res.status===200)
+				alert("Registration successful")
+		})
+		.catch((err)=>{
+			alert(err)
+		})
+	}
+	</script>
+</body>
+</html>
