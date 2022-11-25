@@ -9,25 +9,46 @@
 			background-image: url(https://png.pngtree.com/background/20210716/original/pngtree-blue-pink-gradient-star-dream-princess-background-picture-image_1382500.jpg);
 			background-repeat: no-repeat;
 			background-size:100% ;
+			
+		}
+		#name{
+			text-align: center;
+			margin-top: 15%;
 		}
 	</style>
 </head>
 <body>
-	<input id="username" type="text" placeholder="enter your name"/>	
-	<input id="password" placeholder="enter your password"/>
+	<div id=name>
+	<p><input id="username" type="text" placeholder="enter your name"/></p><br/>	
+	<p><input id="password" placeholder="enter your password"/></p><br/>
+	
+	<select id="cars">
+		<option>select a Car</option>
+		<option>skoda</option>
+		<option>benz</option>
+		<option>maruthi</option>
+	</select><br/>
+	<p><input type="radio" id="male" name="mass">male</p>
+	<p><input type="radio" id="female" name="mass">female</p>
 	<button onclick="store()">Submit</button>
+</div>
 	<script type="text/javascript">
 		function store(){
-			var username=document.getElementById("username").value
-			console.log(username)
-			var password=document.getElementById("password").value
-			console.log(password)
+			var username=document.getElementById("username").value,
+			 password=document.getElementById("password").value,
+			 cars=document.getElementById("cars").value
+			 var gmale=document.getElementById("male").checked
+			 var gfemale=document.getElementById("female").checked
+			console.log(username,password,cars)
+			if(gmale==true) var gender="male"
+				else var gender="female"
+					console.log(gender)
 		fetch("http:localhost:2000/newData",{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json"
 			},
-			body:JSON.stringify({name:username,pass:password})
+			body:JSON.stringify({name:username,pass:password,selectedcars:cars})
 		})
 		.then((res)=>{
 			console.log(res)

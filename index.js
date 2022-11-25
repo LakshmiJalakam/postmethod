@@ -12,8 +12,9 @@ app.get("/",(req,res)=>{
 	res.send("waiting")
 })
 app.post("/newData",(req,res)=>{
-	const {name,pass}=req.body;
-	console.log(name,pass)
+	const {name,pass,selectedcars}=req.body;
+	console.log(name,pass,selectedcars)
 	res.send("added successfully")
 })
+
 app.listen(port,()=>console.log("server is running"))
